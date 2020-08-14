@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Class-Path: . ./conf ./lib/ojdbc6.jar ./lib/dom4j-1.6.1.jar ./lib/jedis-2.9.0.jar ./lib/commons-lang.ja
+ r ./lib/log4j-1.2.17.jar ./lib/zkclient-0.9.jar ./lib/ezmorph-1.0.6.jar ./lib/c3p0-0.9.5-pre8
+ .jar ./lib/commons-net-3.1.jar ./lib/zookeeper-3.4.8.jar ./lib/slf4j-api-1.7.21.jar ./lib/com
+ mons-pool2-2.3.jar ./lib/metrics-core-2.2.0.jar ./lib/kafka_2.11-0.10.1.0.jar ./lib/sca
+ la-library-2.11.8.jar ./lib/logback-classic-1.1.2.jar ./lib/logback-core-1.1.2.jar ./lib/commons-logging-1.1.1.
+ jar ./lib/kafka-clients-0.10.1.0.jar ./lib/commons-beanutils-1.8.0.jar ./lib/commons-co
+ llections-3.1.jar ./lib/mchange-commons-java-0.2.8.jar ./lib/gson-2.8.5.jar ./lib/mysql-connector-java
+ -5.1.31-bin.jar ./lib/scala-parser-combinators_2.11-1.0.4.jar ./lib/kafkatools.jar ./lib/HikariCP-3.2.0.jar ./lib/fastjson-1.2.7.jar
+Main-Class: com.topsci.BootStart
+

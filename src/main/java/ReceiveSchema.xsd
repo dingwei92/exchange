@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schema.ultra-as.com" xmlns="http://schema.ultra-as.com"  elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:annotation>
+		<xs:documentation>服务数据上传验证</xs:documentation>
+	</xs:annotation>
+	<xs:element name="Envelope" type="Envelope">
+		<xs:annotation>
+			<xs:documentation>根节点</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="Envelope">
+		<xs:sequence>
+			<xs:element name="Header" type="Header"/>
+			<xs:element name="Body" type="Body"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Header">
+		<xs:sequence>
+			<xs:element name="MsgSentTime" type="MsgSentTime"/>
+			<xs:element name="MsgSN" type="MsgSN"/>
+			<xs:element name="FormSysID" type="FormSysID"/>
+			<xs:element name="ToSysID" type="ToSysID"/>
+			<xs:element name="MsgOID" type="MsgOID"/>
+			<xs:element name="MsgOTime" type="MsgOTime"/>
+			<xs:element name="MsgType" type="MsgType"/>
+			
+			<xs:element name="MsgNum" type="MsgNum"/>
+			<xs:element name="MsgCount" type="MsgCount"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="Body">
+		<xs:sequence>
+		<xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	
+	<xs:simpleType name="MsgSentTime">
+		<xs:restriction base="SystemID"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="MsgSN">
+		<xs:restriction base="SystemID"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="FormSysID">
+		<xs:restriction base="SystemID"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="ToSysID">
+		<xs:restriction base="SystemID"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="MsgOID">
+		<xs:restriction base="SystemID"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="MsgOTime">
+		<xs:restriction base="SystemID"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="MsgType">
+		<xs:restriction base="SystemID"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="MsgNum">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="MsgCount">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>	
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="SystemID">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

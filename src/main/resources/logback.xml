@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <timestamp key="byDay" datePattern="yyyy-MM-dd"/>
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>info</level>
+        </filter>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %5p %c{0}:%L - %m%n</pattern>
+        </layout>
+    </appender>
+
+    <appender name="sift" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>info</level>
+        </filter>
+        <discriminator>
+            <key>service</key>
+            <defaultValue>qheai_server</defaultValue>
+        </discriminator>
+        <sift>
+            <appender name="service" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>./logs/${service}.log</file>
+                <append>true</append>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern>./logs/${service}.%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+                    <maxHistory>30</maxHistory>
+                     <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                        <maxFileSize>10MB</maxFileSize>
+                    </timeBasedFileNamingAndTriggeringPolicy>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>%d{yyyy-MM-dd HH:mm:ss} %5p %c{0}:%L - %m%n</pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+    <appender name="event" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>error</level>
+        </filter>
+        <file>./logs/qheai_server.error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/qheai_server.error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %5p %c{0}:%L - %m%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="com.topsci" level="info" additivity="false">
+        <appender-ref ref="console"/>
+        <appender-ref ref="sift"/>
+        <appender-ref ref="event"/>
+    </logger>
+    <logger name="org.apache.kafka" level="error" additivity="false">
+        <appender-ref ref="console"/>
+        <appender-ref ref="sift"/>
+        <appender-ref ref="event"/>
+    </logger>
+
+    <root level="warn">
+        <appender-ref ref="console"/>
+        <appender-ref ref="sift"/>
+    </root>
+
+</configuration>
